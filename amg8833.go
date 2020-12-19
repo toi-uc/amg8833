@@ -13,6 +13,7 @@ import (
 // General purpose consts
 const (
 	AMG88xxADDR                 = 0x69 // default I2C address
+	AMG88xxADDR2		    = 0x68 // add by toi
 	AMG88xxPCTL                 = 0x00
 	AMG88xxRST                  = 0x01
 	AMG88xxFPSC                 = 0x02
@@ -54,6 +55,7 @@ type Opts struct {
 	Reset   byte
 	Disable byte
 	FPS     byte
+	Addr	byte // add by toi
 }
 
 // AMG88xx - blah
@@ -70,7 +72,7 @@ type AMG88xx struct {
 // process or if the AMG88xx was not found.
 func NewAMG8833(opts *Opts) (*AMG88xx, error) {
 
-	device, err := i2c.Open(&i2c.Devfs{Dev: opts.Device}, int(AMG88xxADDR))
+	device, err := i2c.Open(&i2c.Devfs{Dev: opts.Device}, int(opts.Addr)) // AMG88xxADDR→opts.Addr by toi
 	if err != nil {
 		return nil, err
 	}
