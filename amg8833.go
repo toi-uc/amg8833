@@ -55,7 +55,7 @@ type Opts struct {
 	Reset   byte
 	Disable byte
 	FPS     byte
-	Addr	int // add by toi
+	Addr	byte // add by toi
 }
 
 // AMG88xx - blah
